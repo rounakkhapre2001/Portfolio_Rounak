@@ -5,7 +5,7 @@ export const personSchema = {
   "@type": "Person",
   "@id": `${hostedUrl}#person`,
   name: profile.name,
-  alternateName: "sinanptm",
+  alternateName: "Rounak",
   jobTitle: "Full Stack Web Developer",
   headline: "MERN Stack & Modern Web Technologies Specialist",
   description: "Innovative self-taught developer creating scalable web applications with cutting-edge technologies.",

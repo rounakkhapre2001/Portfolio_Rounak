@@ -2,18 +2,17 @@ import { ThingsIDo } from "@/types";
 import { baseUrlTech } from "./techData";
 
 export const profile = {
-  summary: ` Self-taught MERN stack developer passionate about building scalable, efficient applications. 
-              Fascinated by technology from a young age, I've continuously expanded my expertise across 
-              various tools and frameworks. Committed to improving my skills, writing better code, and 
-              delivering impactful solutions.`,
-  gitHub: "https://github.com/sinanptm/portfolio",
-  name: "Muhammed Sinan",
+  summary: ` I'm a self-taught Full-Stack Developer dedicated to building scalable, efficient applications. My core expertise is the MERN Stack (MongoDB, Express.js, React, Node.js), which I leverage for both dynamic front-ends and robust APIs.
+  I enhance my projects with the versatility of Python and ensure global accessibility and performance by architecting solutions on Cloud platforms. Driven by a lifelong fascination with technology, I am committed to continuous skill improvement, writing clean code, and delivering impactful digital solutions.`,
+  
+  gitHub: "https://github.com/rounakkhapre2001",
+  name: "Rounak Khapre",
   title: "Full Stack Developer",
-  gitHubUserName: "sinanptm",
-  xUserName: "sinanptm",
-  linkedin: 'https://www.linkedin.com/in/sinanptm',
-  x: 'https://x.com/sinanptm',
-  instagram: "https://www.instagram.com/si_an_z"
+  gitHubUserName: "rounakkhapre2001",
+  xUserName: "rounakkhapre2001",
+  linkedin: 'https://www.linkedin.com/in/rounak-khapre2001/',
+  x: 'https://x.com/rounakkhapre2001',
+  instagram: "https://www.instagram.com/rounak.khapre/"
 };
 export const hostedUrl = "https://muhammedsinan.space";
 export const canonicalUrl = "https://muhammedsinan.space";
@@ -36,37 +35,37 @@ export const socialMediaLinks = [
   {
     title: 'LinkedIn',
     icon: '/assets/social/linkedin.svg',
-    href: 'https://www.linkedin.com/in/sinanptm',
+    href: 'https://www.linkedin.com/in/rounak-khapre2001/',
     smLabel: 'LN',
   },
   {
     title: 'GitHub',
     icon: '/assets/social/github.svg',
-    href: 'https://github.com/sinanptm',
+    href: 'https://github.com/rounakkhapre2001',
     smLabel: 'GH',
   },
   {
     title: 'Stack Overflow',
     icon: '/assets/social/stackoverflow.png',
-    href: 'https://stackoverflow.com/users/25472984/sinan',
+    href: 'https://stackoverflow.com/users/31745575/rounak-khapre',
     smLabel: 'SO',
   },
   {
     title: 'LeetCode',
     icon: '/assets/social/leetcode.jpg',
-    href: 'https://leetcode.com/u/Sinan_z',
+    href: 'https://leetcode.com/u/rounak_240245/',
     smLabel: 'LC',
   },
   {
     title: 'Email',
     icon: '/assets/social/email.svg',
-    href: 'mailto:sinan@codecords.com',
+    href: 'https://mail.google.com/rounakkhapre853@gmail.com',
     smLabel: 'EM',
   },
   {
     title: 'Twitter',
     icon: '/assets/social/x.png',
-    href: 'https://x.com/sinanptm',
+    href: 'https://x.com/rounakkhapre2001',
     smLabel: 'TW',
   }
 ];
@@ -100,14 +99,14 @@ export const thingsIDo: ThingsIDo[] = [
       { name: "React JS", url: `${baseUrlTech}/react.svg` },
       { name: "Next JS", url: `${baseUrlTech}/nextjs.svg` },
       { name: "Nest JS", url: `${baseUrlTech}/nestjs.svg` },
-      { name: "Expo", url: `${baseUrlTech}/expo.svg` },
+      { name: "python", url: `${baseUrlTech}/python.svg` },
       { name: "TypeScript", url: `${baseUrlTech}/typescript.svg` },
       { name: "Tailwind", url: `${baseUrlTech}/tailwind.svg` },
       { name: "WebRTC", url: `${baseUrlTech}/webrtc.svg` },
     ],
     capabilities: [
       { text: 'Developing modern web applications with React, Next.js, and TypeScript', icon: '💻' },
-      { text: 'Building robust backend services with Node.js and NestJS', icon: '⚙️' },
+      { text: 'Building robust backend services with Node.js, NestJS and Python', icon: '⚙️' },
       { text: 'Creating cross-platform mobile applications using Expo and React Native', icon: '📱' }
     ]
   },
@@ -140,7 +139,6 @@ export const thingsIDo: ThingsIDo[] = [
       { name: "ESLint", url: `${baseUrlTech}/eslint.svg` },
       { name: "Prettier", url: `${baseUrlTech}/prettier.svg` },
       { name: "PM2", url: `${baseUrlTech}/pm2.png` },
-      { name: "Winston", url: `${baseUrlTech}/winston.svg` },
       { name: "Postman", url: `${baseUrlTech}/postman.svg` },
     ],
     capabilities: [

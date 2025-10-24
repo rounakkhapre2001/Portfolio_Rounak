@@ -99,6 +99,7 @@ export const techCategories: TechCategory[] = [
             { name: "NodeJS", url: `${baseUrlTech}/nodejs.svg` },
             { name: "ExpressJS", url: `${baseUrlTech}/express.svg` },
             { name: "Nest JS", url: `${baseUrlTech}/nestjs.svg` },
+            { name: "Python", url: `${baseUrlTech}/python.svg` },
 
             // Real-time Communication
             { name: "Socket.io", url: `${baseUrlTech}/socket-io.svg` },
@@ -132,10 +133,7 @@ export const techCategories: TechCategory[] = [
             // State Management & Forms
             { name: "Redux", url: `${baseUrlTech}/redux.svg` },
             { name: "React Query", url: `${baseUrlTech}/react-query.svg` },
-            { name: "Nuqs", url: `${baseUrlTech}/nuqs.svg` },
             { name: "React Form", url: `${baseUrlTech}/react-hook-form.svg` },
-            { name: "Zod", url: `${baseUrlTech}/zod.svg` },
-            { name: "Joi", url: `${baseUrlTech}/joi.svg` },
         ]
     },
     {
@@ -154,8 +152,6 @@ export const techCategories: TechCategory[] = [
             // Backend as a Service
             { name: "Supabase", url: `${baseUrlTech}/supabase.png` },
             { name: "Firebase", url: `${baseUrlTech}/firebase.svg` },
-            { name: "Appwrite", url: `${baseUrlTech}/appwrite.svg` },
-            { name: "Strapi", url: `/assets/org/strapi.png` },
         ]
     },
     {
@@ -170,9 +166,6 @@ export const techCategories: TechCategory[] = [
             { name: "Vercel", url: `${baseUrlTech}/vercel.svg` },
             { name: "Render", url: `${baseUrlTech}/render.svg` },
             { name: "Hostinger", url: `${baseUrlTech}/hostinger.png` },
-            { name: "Cloudinary", url: `${baseUrlTech}/cloudinary.png` },
-            { name: "Hetzner", url: `${baseUrlTech}/hetzner.ico` },
-            { name: "SendGrid", url: `${baseUrlTech}/sendgrid.png` }
         ]
     },
     {
@@ -196,15 +189,11 @@ export const techCategories: TechCategory[] = [
             // AI & Machine Learning
             { name: "OpenAI", url: `${baseUrlTech}/openai.svg` },
             { name: "Google AI", url: `${baseUrlTech}/google-ai.svg` },
-            { name: "Hugging Face", url: `${baseUrlTech}/huggingface.png` },
-            { name: "Together ai", url: `${baseUrlTech}/together-ai.png` },
             { name: "Gradio", url: `${baseUrlTech}/gradio.png` },
 
             // Payment Systems
             { name: "Stripe", url: `${baseUrlTech}/stripe.svg` },
             { name: "Razorpay", url: `${baseUrlTech}/razorpay.svg` },
-            { name: "Dodo", url: `${baseUrlTech}/dodo.png` },
-            { name: "Chappa", url: `${baseUrlTech}/chappa.svg` },
         ]
     },
     {
@@ -224,8 +213,6 @@ export const techCategories: TechCategory[] = [
 
             // UI Component Libraries
             { name: "Shadcn", url: `${baseUrlTech}/shadcn.svg` },
-            { name: "Radix UI", url: `${baseUrlTech}/radix-ui.svg` },
-            { name: "Mui UI", url: `${baseUrlTech}/mui.png` },
             { name: "Aceternity", url: `${baseUrlTech}/aceternity.png` },
             { name: "Origin Ui", url: `${baseUrlTech}/origin.ico` },
             { name: "Chart.js", url: `${baseUrlTech}/chartjs.svg` },
@@ -242,7 +229,7 @@ export const techCategories: TechCategory[] = [
             { name: "Commander", url: `${baseUrlTech}/commander.svg` },
             { name: "Execa", url: `${baseUrlTech}/execa.svg` },
             { name: "Inquirer", url: `${baseUrlTech}/inquirer.svg` },
-            { name: "Ora", url: `${baseUrlTech}/ora.svg` },
+          
         ]
     },
     {
@@ -260,11 +247,11 @@ export const techCategories: TechCategory[] = [
             // Testing & Code Quality
             { name: "Jest", url: `${baseUrlTech}/jest.png` },
             { name: "ESLint", url: `${baseUrlTech}/eslint.svg` },
-            { name: "Biome", url: `${baseUrlTech}/biome.svg` },
+            //{ name: "Biome", url: `${baseUrlTech}/biome.svg` },
 
             // API Testing
             { name: "Postman", url: `${baseUrlTech}/postman.svg` },
-            { name: "Thunder Client", url: `${baseUrlTech}/thunder-client.png` },
+            //{ name: "Thunder Client", url: `${baseUrlTech}/thunder-client.png` },
         ]
     },
     {
@@ -282,8 +269,8 @@ export const techCategories: TechCategory[] = [
             // Monitoring & Analytics
             { name: "Vercel Analytics", url: `${baseUrlTech}/vercel-analytics.svg` },
             { name: "Google Analytics", url: `${baseUrlTech}/google-analytics.svg` },
-            { name: "Winston", url: `${baseUrlTech}/winston.svg` },
-            { name: "PM2", url: `${baseUrlTech}/pm2.png` },
+            //{ name: "Winston", url: `${baseUrlTech}/winston.svg` },
+            //{ name: "PM2", url: `${baseUrlTech}/pm2.png` },
         ]
     }
 ];

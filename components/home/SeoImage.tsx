@@ -12,7 +12,7 @@ const SeoImage = () => {
     >
       <Image
         src="/assets/profile-image.jpg"
-        alt="Muhammed sinan - MERN stack developer"
+        alt="Rounak Khapre - MERN stack developer"
         width={1200}
         height={630}
         priority
