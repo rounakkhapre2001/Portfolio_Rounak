@@ -96,3 +96,18 @@ export interface SearchResultItem {
         html_url: string;
     };
 }
+
+// types/github.ts
+
+export interface GitHubEvent {
+    id: string;
+    type: string;
+    repo: {
+      name: string;
+      url?: string;
+    };
+    created_at: string;
+    payload?: Record<string, unknown>;
+    [key: string]: unknown; // fallback for extra fields
+  }
+  
