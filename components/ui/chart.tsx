@@ -26,11 +26,9 @@ const ChartContext = React.createContext<ChartContextProps | null>(null)
 
 function useChart() {
   const context = React.useContext(ChartContext)
-
   if (!context) {
     throw new Error("useChart must be used within a <ChartContainer />")
   }
-
   return context
 }
 
@@ -69,7 +67,7 @@ ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    //eslint-disable-next-line
+    // eslint-disable-next-line
     ([_, config]) => config.theme || config.color
   )
 
@@ -155,10 +153,7 @@ const ChartTooltipContent = React.forwardRef<
         )
       }
 
-      if (!value) {
-        return null
-      }
-
+      if (!value) return null
       return <div className={cn("font-medium", labelClassName)}>{value}</div>
     }, [
       label,
@@ -170,9 +165,7 @@ const ChartTooltipContent = React.forwardRef<
       labelKey,
     ])
 
-    if (!active || !payload?.length) {
-      return null
-    }
+    if (!active || !payload?.length) return null
 
     const nestLabel = payload.length === 1 && indicator !== "dot"
 
@@ -193,7 +186,7 @@ const ChartTooltipContent = React.forwardRef<
 
             return (
               <div
-                key={item.dataKey}
+                key={`${item.dataKey || key}-${index}`} // ✅ unique key fix
                 className={cn(
                   "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
                   indicator === "dot" && "items-center"
@@ -272,10 +265,7 @@ const ChartLegendContent = React.forwardRef<
     ref
   ) => {
     const { config } = useChart()
-
-    if (!payload?.length) {
-      return null
-    }
+    if (!payload?.length) return null
 
     return (
       <div
@@ -286,13 +276,13 @@ const ChartLegendContent = React.forwardRef<
           className
         )}
       >
-        {payload.map((item) => {
+        {payload.map((item, index) => {
           const key = `${nameKey || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
 
           return (
             <div
-              key={item.value}
+              key={`${item.value || key}-${index}`} // ✅ unique key fix
               className={cn(
                 "flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground"
               )}
@@ -317,15 +307,13 @@ const ChartLegendContent = React.forwardRef<
 )
 ChartLegendContent.displayName = "ChartLegend"
 
-// Helper to extract item config from a payload.
+// Helper
 function getPayloadConfigFromPayload(
   config: ChartConfig,
   payload: unknown,
   key: string
 ) {
-  if (typeof payload !== "object" || payload === null) {
-    return undefined
-  }
+  if (typeof payload !== "object" || payload === null) return undefined
 
   const payloadPayload =
     "payload" in payload &&
