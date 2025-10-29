@@ -99,6 +99,7 @@ export interface SearchResultItem {
 
 // types/github.ts
 
+// types/github.ts
 export interface GitHubEvent {
     id: string;
     type: string;
@@ -108,6 +109,6 @@ export interface GitHubEvent {
     };
     created_at: string;
     payload?: Record<string, unknown>;
-    [key: string]: unknown; // fallback for extra fields
+    [key: string]: unknown;
   }
   

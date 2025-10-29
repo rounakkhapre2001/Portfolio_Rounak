@@ -1,84 +1,52 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { ChartDataType } from "@/types";
-import ContributionChart from "./ContributionChart";
-import { fetchAllUserPullRequests, fetchUserIssueStats, fetchUserPRStats } from '@/lib/github/getContributions';
-import { profile } from '@/constants';
-import ChartSkeleton from './ChartSkeleton';
-import { PullRequest } from "@/types/github";
-import PullRequestsTable from './PullRequests';
+import React, { useEffect, useState } from "react";
+import { GitHubEvent } from "@/types/github";
 
-const Contributions = () => {
-  const [prData, setPrData] = useState<ChartDataType>([]);
-  const [issueData, setIssueData] = useState<ChartDataType>([]);
-  const [pullRequests, setPullRequests] = useState<PullRequest[]>([]);
+export default function Contributions() {
+  const [data, setData] = useState<GitHubEvent[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function loadData() {
       try {
-        setLoading(true);
-        const [prStats, issueStats, prs] = await Promise.all([
-          fetchUserPRStats(profile.gitHubUserName),
-          fetchUserIssueStats(profile.gitHubUserName),
-          fetchAllUserPullRequests(profile.gitHubUserName)
-        ]);
-
-        setPrData([
-          { status: "merged", count: prStats.merged, fill: "hsl(var(--chart-2))" },
-          { status: "open", count: prStats.open, fill: "hsl(var(--chart-1))" },
-          { status: "closed", count: prStats.closed, fill: "hsl(var(--chart-3))" },
-        ]);
-
-        setIssueData([
-          { status: "open", count: issueStats.open, fill: "hsl(var(--chart-4))" },
-          { status: "closed", count: issueStats.closed, fill: "hsl(var(--chart-5))" },
-        ]);
-
-        setPullRequests(prs);
-
+        const res = await fetch("/api/github");
+        if (!res.ok) throw new Error("Failed to load GitHub contributions");
+        const json: GitHubEvent[] = await res.json();
+        setData(json);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch GitHub data');
+        console.error(err);
+        setError("Error loading contributions");
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchData();
+    }
+    loadData();
   }, []);
 
-  if (error) {
-    return (
-      <div className="p-4 text-red-500">
-        Error loading contributions: {error}
-      </div>
-    );
-  }
+  if (loading) return <p>Loading contributions...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <div className="space-y-4">
-        <h2 className="heading">Contributions</h2>
-
-        <div className="flex flex-col md:flex-row gap-4">
-          {loading ? (
-            <>
-              <ChartSkeleton />
-              <ChartSkeleton />
-            </>
-          ) : (
-            <>
-              <ContributionChart title="Pull Requests" data={prData} />
-              <ContributionChart title="Issues" data={issueData} />
-            </>
-          )}
-        </div>
-        <PullRequestsTable pullRequests={pullRequests} />
-      </div>
+    <div className="space-y-4">
+      <h2 className="text-2xl font-bold text-center">Recent GitHub Contributions</h2>
+      <ul className="space-y-2 text-sm">
+        {data.slice(0, 5).map((event) => (
+          <li key={event.id} className="border rounded p-2 bg-background/50">
+            <strong>{event.type.replace("Event", "")}</strong> on{" "}
+            <a
+              href={`https://github.com/${event.repo.name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+            >
+              {event.repo.name}
+            </a>{" "}
+            at {new Date(event.created_at).toLocaleDateString()}
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
-
-export default Contributions;
+}

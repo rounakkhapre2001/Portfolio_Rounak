@@ -11,18 +11,8 @@ export const openSourcePageSchema = {
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: hostedUrl
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Open Source",
-        item: `${hostedUrl}/open-source`
-      }
+      { "@type": "ListItem", position: 1, name: "Home", item: hostedUrl },
+      { "@type": "ListItem", position: 2, name: "Open Source", item: `${hostedUrl}/open-source` }
     ]
   }
 };

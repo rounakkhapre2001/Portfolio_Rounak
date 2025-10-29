@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import Contributions from "@/components/open-source/Contributions";
 import { canonicalUrl } from "@/constants";
+import Script from "next/script";
+import { openSourcePageSchema, contributionsSchema } from "./schema"; // correct filename
+
 
 export const metadata: Metadata = {
   title: "Open Source Contributions",
@@ -18,6 +21,16 @@ export default function OpenSourcePage() {
         Open Source Contributions
       </h1>
       <Contributions />
+
+      {/* JSON-LD for SEO */}
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(openSourcePageSchema) }}
+      />
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contributionsSchema) }}
+      />
     </main>
   );
 }
