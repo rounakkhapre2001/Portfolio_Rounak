@@ -6,29 +6,53 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Image from 'next/image';
-import { submitMessage } from '@/action';
 import { toast } from '@/hooks/useToast';
 import { motion } from 'framer-motion';
 import { containerVariants } from '@/style';
 
-const Contact = () => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [contactInfo, setContactInfo] = useState('');
   const [message, setMessage] = useState('');
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent Successfully! 🎉",
-      description: "Thank you for reaching out! I'll get back to you soon. 😊👍",
-      variant: "success",
-      duration: 5000,
-    });
-    await submitMessage(name, contactInfo, message);
-    setName('');
-    setContactInfo('');
-    setMessage('');
-  }, [contactInfo, message, name]);
+
+    try {
+      await fetch(
+          "https://script.google.com/macros/s/AKfycbzGm4wQIlO3SScZCTljSKVaMlyGS8xMfs5SiL8Be0FuEByt_LvkUKiL_UJgT-hXfmv5/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            contactInfo,
+            message,
+          }),
+        }
+      );
+
+      toast({
+        title: "Message Sent Successfully! 🎉",
+        description: "Thank you for reaching out! I'll get back to you soon. 😊👍",
+        variant: "success",
+        duration: 5000,
+      });
+
+      setName('');
+      setContactInfo('');
+      setMessage('');
+    } catch (error) {
+      console.error("Error submitting message:", error);
+      toast({
+        title: "Error 😢",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    }
+  }, [name, contactInfo, message]);
 
   return (
     <motion.div
@@ -49,23 +73,23 @@ const Contact = () => {
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20" />
-      <motion.h2 
+
+      <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600"
+        className="text-3xl sm:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600"
       >
         Contact Me
       </motion.h2>
-      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6 relative z-10">
+
+      <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <Label htmlFor="name" className="text-xs sm:text-sm font-medium text-gray-200">
-            Name
-          </Label>
+          <Label htmlFor="name" className="text-sm font-medium text-gray-200">Name</Label>
           <Input
             id="name"
             type="text"
@@ -73,17 +97,16 @@ const Contact = () => {
             onChange={(e) => setName(e.target.value)}
             required
             placeholder="How can I address you"
-            className="mt-1 w-full bg-gray-900/50 border-gray-800 text-gray-100 placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500 transition-colors duration-300 text-sm sm:text-base"
+            className="mt-1 w-full bg-gray-900/50 border-gray-800 text-gray-100 placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500 transition-colors duration-300"
           />
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <Label htmlFor="contactInfo" className="text-xs sm:text-sm font-medium text-gray-200">
-            Contact Information (Email or Phone)
-          </Label>
+          <Label htmlFor="contactInfo" className="text-sm font-medium text-gray-200">Contact Information (Email or Phone)</Label>
           <Input
             id="contactInfo"
             type="text"
@@ -91,27 +114,27 @@ const Contact = () => {
             onChange={(e) => setContactInfo(e.target.value)}
             required
             placeholder="Where can I get back to you"
-            className="mt-1 w-full bg-gray-900/50 border-gray-800 text-gray-100 placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500 transition-colors duration-300 text-sm sm:text-base"
+            className="mt-1 w-full bg-gray-900/50 border-gray-800 text-gray-100 placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500 transition-colors duration-300"
           />
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <Label htmlFor="message" className="text-xs sm:text-sm font-medium text-gray-200">
-            Message
-          </Label>
+          <Label htmlFor="message" className="text-sm font-medium text-gray-200">Message</Label>
           <Textarea
             id="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
-            placeholder="Hello Rounak! I Want to Hire You 😊..."
+            placeholder="Hello Rounak! I want to hire you 😊..."
             rows={4}
-            className="mt-1 w-full bg-gray-900/50 border-gray-800 text-gray-100 placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500 resize-none transition-colors duration-300 text-sm sm:text-base"
+            className="mt-1 w-full bg-gray-900/50 border-gray-800 text-gray-100 placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500 resize-none transition-colors duration-300"
           />
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -119,16 +142,16 @@ const Contact = () => {
         >
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white transition-colors duration-300 py-4 sm:py-5 md:py-6 relative overflow-hidden group text-sm sm:text-base"
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-4 relative overflow-hidden group text-base"
           >
             <span className="relative z-10">Send Message</span>
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
             <Image
               src="/assets/icons/send.svg"
-              width={16}
-              height={16}
+              width={18}
+              height={18}
               alt="Send"
-              className="ml-2 h-3 w-3 sm:h-4 sm:w-4 inline-block relative z-10"
+              className="ml-2 inline-block relative z-10"
             />
           </Button>
         </motion.div>
@@ -137,5 +160,4 @@ const Contact = () => {
   );
 };
 
-export default memo(Contact);
-
+export default memo(ContactForm);

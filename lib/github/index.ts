@@ -1,13 +1,14 @@
-export const GITHUB_API_BASE_URL = 'https://api.github.com';
-const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || '';
+// lib/github/index.ts
+
+export const GITHUB_API_BASE_URL = "https://api.github.com";
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // ✅ Server-only, not exposed publicly
 
 export const githubApiHeaders = {
-    'Authorization': `Bearer ${GITHUB_TOKEN}`,
-    'Accept': 'application/vnd.github.v3+json',
-    'X-GitHub-Api-Version': '2022-11-28'
+  ...(GITHUB_TOKEN && { Authorization: `Bearer ${GITHUB_TOKEN}` }), // ✅ Only add if exists
+  Accept: "application/vnd.github.v3+json",
+  "X-GitHub-Api-Version": "2022-11-28",
 };
 
-// add this
 import { GitHubEvent } from "@/types/github";
 
 export async function fetchGitHubContributions(): Promise<GitHubEvent[] | null> {
